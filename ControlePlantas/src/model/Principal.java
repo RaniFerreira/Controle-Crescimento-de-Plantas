@@ -2,7 +2,6 @@ package model;
 
 
 
-import java.sql.Connection;
 import connection.ConexaoBD;
 
 /**
