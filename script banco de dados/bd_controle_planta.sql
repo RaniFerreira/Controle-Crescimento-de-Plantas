@@ -73,3 +73,16 @@
 		ON DELETE CASCADE
 		
 	);
+    
+    /*criação de usuario e senha para adiministracao do banco*/
+    CREATE USER 'controle_usuario'@'localhost' IDENTIFIED BY 'senha_controle_plantas';
+    
+    
+    /*aplicando a permissões ao usuario*/
+    /*o usuario nao podera criar novas tabelas, somente ler, inserir, atualizar e deletar registros*/
+    GRANT SELECT, INSERT, UPDATE, DELETE ON controle_planta.* TO 'controle_usuario'@'localhost';
+    
+    /*aplicando e salvando configurações*/
+    FLUSH PRIVILEGES;
+
+    
