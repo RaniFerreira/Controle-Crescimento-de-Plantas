@@ -12,7 +12,7 @@ Bem-vindo ao projeto de Controle de Crescimento e Irrigação de Plantas! Este s
   ```
 
 ## 📋 Descrição
-Este projeto integra um banco de dados MySQL com uma aplicação interativa para gerenciar informações sobre plantas, sensores e irrigação. Ele foi criado como parte de um trabalho prático da disciplina de Banco de Dados II no IFTM - Campus Patrocínio.
+Este projeto integra um banco de dados MySQL com uma aplicação interativa para gerenciar informações sobre plantas, solos e irrigação. Ele foi criado como parte de um trabalho prático da disciplina de Banco de Dados II no IFTM - Campus Patrocínio.
 
 As principais funcionalidades incluem o gerenciamento de dados (CRUD), automação com triggers e visualizações para análise de dados.
 
