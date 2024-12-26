@@ -11,7 +11,10 @@ import connection.ConexaoBD;
 //Classe principal para rodar o menu de opções
 public class Principal {
     public static void main(String[] args) {
-       
+        
+        System.out.println("=================");
+        System.out.println("       Menu      ");
+        System.out.println("=================");
        
    
         ConexaoBD.connect();
