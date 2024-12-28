@@ -84,5 +84,55 @@
     
     /*aplicando e salvando configurações*/
     FLUSH PRIVILEGES;
-
     
+    /*Inserindo valores na tabela SOLO*/
+    INSERT INTO solo 
+    (tipo_solo, fertilidade, umidade) VALUES 
+	('Arenoso', 'Baixa', 11.5),
+	('Argiloso', 'Média', 12.3),
+	('Organico', 'Alta', 16.0);
+    
+    /*Inserindo valores na tabela PLANTA*/
+    INSERT INTO planta 
+    (id_solo, nome, tipo_planta, data_plantio) VALUES 
+	(1, 'Morango', 'Fruta', '2024-02-03'),
+	(2, 'Batata Doce', 'Raiz', '2024-03-05'),
+	(3, 'Alface', 'Hortaliça', '2024-01-10');
+
+	/*Inserindo valores na tabela IRRIGAÇÃO*/
+	INSERT INTO irrigacao
+    (id_planta, data_irrigacao, quantidade_agua) VALUES 
+	(1, '2024-02-04', 1.5),
+	(2, '2024-03-06', 1.0),
+	(3, '2024-01-11', 1.5);
+   
+	/*Inserindo valores na tabela ALERTA*/
+    INSERT INTO alerta 
+    (id_solo, id_irrigacao, nivel_alerta, descricao) VALUES 
+	(1, 4, 2, 'Umidade baixa no solo arenoso'),
+	(2, 5, 1, 'Solo argiloso precisa de menor quantidade de água'),
+	(3, 6, 3, 'Necessita de irrigação frequente');
+
+	/*Inserindo valores na tabela RELATORIO DE CRESCIMENTO*/
+	INSERT INTO relatorio_crescimento 
+    (id_planta, data_medicao, altura, descricao_saude) VALUES 
+	(1, '2024-02-05', 5.0, 'Saudável e em crescimento'),
+	(2, '2024-03-07', 10.0, 'Crecimento otimo, mais rapido que o esperando'),
+	(3, '2024-01-12', 8.0, 'Resistente e saudável');
+
+
+	/* VIEW Para Descrição completa das Plantas e solo*/
+    
+	CREATE VIEW view_plantas_solo AS
+	SELECT 
+		planta.id_planta,
+		planta.nome AS nome_planta,
+		planta.tipo_planta,
+		planta.data_plantio,
+		solo.tipo_solo,
+		solo.fertilidade,
+		solo.umidade
+	FROM planta
+	JOIN solo ON planta.id_solo = solo.id_solo;
+    
+	SELECT * FROM view_plantas_solo;
