@@ -28,8 +28,7 @@ public class Planta {
     já com todos os valores definidos de uma vez, ao invés de definir 
     os valores individualmente com setters depois.*/
 
-    public Planta(int id_planta, int id_solo, String nome, String tipo_planta, Date data_plantio) {
-        this.id_planta = id_planta;
+    public Planta(int id_solo, String nome, String tipo_planta, Date data_plantio) {
         this.id_solo = id_solo;
         this.nome = nome;
         this.tipo_planta = tipo_planta;

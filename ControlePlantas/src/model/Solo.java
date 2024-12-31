@@ -21,8 +21,7 @@ public class Solo {
     }
 
      //construtor com parametros
-    public Solo(int id_solo, String tipo_solo, String fertilidade, float umidade) {
-        this.id_solo = id_solo;
+    public Solo( String tipo_solo, String fertilidade, float umidade) {
         this.tipo_solo = tipo_solo;
         this.fertilidade = fertilidade;
         this.umidade = umidade;

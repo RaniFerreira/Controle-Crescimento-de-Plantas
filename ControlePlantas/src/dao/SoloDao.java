@@ -84,6 +84,7 @@ public class SoloDao {
         }
     }
     
+    // Metodo para listar 
     public List<Solo> listAll() {
     String sql = "SELECT * FROM solo";
     List<Solo> solos = new ArrayList<>();

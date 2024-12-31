@@ -3,6 +3,8 @@ package model;
 import dao.SoloDao;
 import java.sql.Connection;
 import connection.ConexaoBD;
+import dao.PlantaDao;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,17 +22,8 @@ public class Principal {
         System.out.println("       Menu      ");
         System.out.println("=================");
         
-        // fiz alguns teste na pricipal, caso queira aproveitar,  
-       
         
-        //SoloDao soloDao = new SoloDao(connection); // instanciando a soloDao 
-        // Testando o método insert
         
-        /*Solo solo = new Solo(); // criando objeto solo
-        solo.setTipo_solo("Argiloso");
-        solo.setFertilidade("Alta");
-        solo.setUmidade(20.5f);
-        soloDao.insert(solo);*/
         
         /*// Testando o método update
             System.out.println("\nTestando o método update...");
