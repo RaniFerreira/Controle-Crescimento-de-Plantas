@@ -9,6 +9,11 @@ import java.util.Date;
 import java.util.List;
 import model.Planta;
 
+/**
+ *
+ * @author Ranielly Ferreira e Paulo Junior
+ */
+
 public class PlantaDao {
 
     private Connection connection; // Variável para gerenciar a conexão com o banco de dados

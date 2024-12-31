@@ -7,6 +7,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import model.Solo;
+/**
+ *
+ * @author Ranielly Ferreira e Paulo Junior
+ */
+
 
 public class SoloDao {
 
