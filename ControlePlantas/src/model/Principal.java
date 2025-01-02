@@ -3,8 +3,10 @@ package model;
 import dao.SoloDao;
 import java.sql.Connection;
 import connection.ConexaoBD;
+import model.RelatorioCrescimento;
 import dao.IrrigacaoDao;
 import dao.PlantaDao;
+import dao.RelatorioCrescimentoDao;
 import java.util.Date;
 import java.util.List;
 
@@ -24,34 +26,56 @@ public class Principal {
         System.out.println("=================");
         
         
-      
+        RelatorioCrescimentoDao relatorioDao = new RelatorioCrescimentoDao(connection);
+        
+        //Testando insert RelatorioDao
+                
+        /*RelatorioCrescimento relatorio = new RelatorioCrescimento();
+        
+        relatorio.setId_planta(1);
+        relatorio.setData_medicao(new Date());
+        relatorio.setAltura((float) 0.50);
+        relatorio.setDescricao_saude("Planta saudavel, sem pragas");
+        relatorioDao.insert(relatorio);*/
+        
+        
+        
         
         
         /*// Testando o método update
             System.out.println("\nTestando o método update...");
-            Solo soloUpdate = new Solo();
-            soloUpdate.setId_solo(4);  // Supondo que o id do solo inserido seja 1
-            soloUpdate.setTipo_solo("Arenoso");
-            soloUpdate.setFertilidade("Média");
-            soloUpdate.setUmidade(15.0f);
-            soloDao.update(soloUpdate); */ // Atualiza o solo com o ID 1
+            RelatorioCrescimento relatorioUpdate = new RelatorioCrescimento();
+            
+            
+            relatorioUpdate.setId_relatorio(4);
+            relatorioUpdate.setAltura((float) 0.55);
+            relatorioUpdate.setDescricao_saude("Planta com um bom crescimento");
+            
+            relatorioDao.update(relatorioUpdate); */
             
             /*//Testando o método delete
             System.out.println("\nTestando o método delete...");
-            soloDao.delete(4);  // Deleta o solo com o ID 1*/
+            relatorioDao.delete(4);  // Deleta o solo com o ID 1*/
             
             /*// Testando o método listAll
             System.out.println("\nTestando o método listAll...");
-            List<Solo> solos = soloDao.listAll();  // Lista todos os registros de solos
-            
-            if (solos.isEmpty()) {
-                System.out.println("Nenhum solo encontrado.");// caso o não tenha nenhuma registro na tabela
+            List<RelatorioCrescimento> relatorios = relatorioDao.listAll(); // Lista todos os registros
+
+            if (relatorios.isEmpty()) {
+                System.out.println("Nenhum relatório encontrado."); // Mensagem mais clara
             } else {
-                for (Solo solo : solos) {
-                    System.out.println(solo.getId_solo() + " | " + solo.getTipo_solo() + " | " + solo.getFertilidade() + " | " + solo.getUmidade());
+                for (RelatorioCrescimento relatorio : relatorios) {
+                    System.out.println(
+                        relatorio.getId_relatorio() + " | " +
+                        relatorio.getId_planta() + " | " +
+                        relatorio.getData_medicao() + " | " +
+                        relatorio.getAltura() + " | " +
+                        relatorio.getDescricao_saude()
+                    );
                 }
             }
             */
+            
             
     
     }   

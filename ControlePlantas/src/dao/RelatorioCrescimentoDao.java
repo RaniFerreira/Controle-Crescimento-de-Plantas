@@ -26,7 +26,7 @@ public class RelatorioCrescimentoDao {
     
     // Método para inserir um novo registro no banco de dados
     public void insert(RelatorioCrescimento relatorio) {
-        String sql = "INSERT INTO relatorioCrescimento (id_planta, data_medicao, altura, descricao_saude) VALUES (?, ?, ?,?)";
+        String sql = "INSERT INTO relatorio_crescimento (id_planta, data_medicao, altura, descricao_saude) VALUES (?, ?, ?,?)";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             // Define os valores para cada parâmetro da query
@@ -47,7 +47,7 @@ public class RelatorioCrescimentoDao {
     
     // Método para deletar um registro pelo ID
     public void delete(int id_relatorio) {
-        String sql = "DELETE FROM relatorioCrescimento WHERE id_relatorio= ?";
+        String sql = "DELETE FROM relatorio_crescimento WHERE id_relatorio= ?";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             // Define o valor para o parâmetro ID
@@ -70,13 +70,14 @@ public class RelatorioCrescimentoDao {
     
     // Método para atualizar um registro na tabela relatorioCrescimento
     public void update(RelatorioCrescimento relatorio) {
-        String sql = "UPDATE relatorioCrescimento SET data_medicao altura = ?, descricao_saude = ? WHERE id_relatorio = ?";
+        String sql = "UPDATE relatorio_crescimento SET  altura = ?, descricao_saude = ? WHERE id_relatorio = ?";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             // Define os valores para cada parâmetro da query
-            stmt.setDate(1, new java.sql.Date(relatorio.getData_medicao().getTime()));
-            stmt.setFloat(2, relatorio.getAltura());
-            stmt.setString(3, relatorio.getDescricao_saude());
+            
+            stmt.setFloat(1, relatorio.getAltura());
+            stmt.setString(2, relatorio.getDescricao_saude());
+            stmt.setInt(3, relatorio.getId_relatorio());
 
             // Executa o comando de atualização no banco de dados
             int rowsAffected = stmt.executeUpdate();
@@ -94,7 +95,7 @@ public class RelatorioCrescimentoDao {
     
     // Metodo para listar 
     public List<RelatorioCrescimento> listAll() {
-    String sql = "SELECT * FROM relatorioCrescimento";
+    String sql = "SELECT * FROM relatorio_crescimento";
     List<RelatorioCrescimento> relatorio = new ArrayList<>();
 
     try (PreparedStatement stmt = connection.prepareStatement(sql);
@@ -102,7 +103,7 @@ public class RelatorioCrescimentoDao {
 
         // Verificar se o ResultSet tem dados
         if (!rs.isBeforeFirst()) {
-            System.out.println("Nenhum dado encontrado na tabela 'relatorioCrescimento'.");
+            System.out.println("Nenhum dado encontrado na tabela 'relatorio_crescimento'.");
         }
 
         // Itera sobre os resultados da consulta
@@ -112,7 +113,7 @@ public class RelatorioCrescimentoDao {
             relatorioC.setId_planta(rs.getInt("id_planta")); 
             relatorioC.setData_medicao(new Date(rs.getDate("data_medicao").getTime())); 
             relatorioC.setAltura(rs.getFloat("altura"));
-            relatorioC.setDescricao_saude(rs.getString("descricao_altura")); 
+            relatorioC.setDescricao_saude(rs.getString("descricao_saude")); 
 
             // Adiciona o objeto relatoorio à lista
             relatorio.add(relatorioC);
