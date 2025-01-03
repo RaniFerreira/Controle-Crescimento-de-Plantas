@@ -22,8 +22,8 @@ public class Alerta {
     }
 
     // Construtor com parâmetros para inicializar as variáveis diretamente
-    public Alerta(int id_alerta, int nivel_alerta, String descricao, int id_solo, int id_irrigacao) {
-        this.id_alerta = id_alerta;
+    public Alerta(int nivel_alerta, String descricao, int id_solo, int id_irrigacao) {
+       
         this.nivel_alerta = nivel_alerta;
         this.descricao = descricao;
         this.id_solo = id_solo;

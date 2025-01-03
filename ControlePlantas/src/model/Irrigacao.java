@@ -21,8 +21,7 @@ public class Irrigacao {
     }
 
     //construtor com parametros
-    public Irrigacao(int id_irrigacao, int id_planta, Date data_irrigacao, float quantidade_agua) {
-        this.id_irrigacao = id_irrigacao;
+    public Irrigacao( int id_planta, Date data_irrigacao, float quantidade_agua) {
         this.id_planta = id_planta;
         this.data_irrigacao = data_irrigacao;
         this.quantidade_agua = quantidade_agua;

@@ -22,8 +22,8 @@ public class RelatorioCrescimento {
     }
 
     //construtor com parametros
-    public RelatorioCrescimento(int id_relatorio, int id_planta, Date data_medicao, float altura, String descricao_saude) {
-        this.id_relatorio = id_relatorio;
+    public RelatorioCrescimento( int id_planta, Date data_medicao, float altura, String descricao_saude) {
+        
         this.id_planta = id_planta;
         this.data_medicao = data_medicao;
         this.altura = altura;
