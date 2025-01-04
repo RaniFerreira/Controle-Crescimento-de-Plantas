@@ -70,9 +70,7 @@ public class Alerta {
     public void setId_irrigacao(int id_irrigacao) {
         this.id_irrigacao = id_irrigacao;
     }
-    
-    
-    
+
     
     
 }

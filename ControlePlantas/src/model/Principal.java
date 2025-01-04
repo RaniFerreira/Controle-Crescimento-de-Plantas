@@ -3,10 +3,12 @@ package model;
 import dao.SoloDao;
 import java.sql.Connection;
 import connection.ConexaoBD;
+import dao.AlertaDao;
 import model.RelatorioCrescimento;
 import dao.IrrigacaoDao;
 import dao.PlantaDao;
 import dao.RelatorioCrescimentoDao;
+import dao.ViewDao;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -35,9 +37,10 @@ public class Principal {
             System.out.println("2 -> Gerenciar Solos");
             System.out.println("3 -> Gerenciar Relatorios de Crescimento");
             System.out.println("4 -> Gerenciar Irigação");
-            System.out.println("5 -> Gerenciar Alerta");
-            System.out.println("Digite um numero para escolher o comando: ");
+            System.out.println("5 -> Visualizar Alerta");
+            System.out.println("6 -> Visualização de relatorios (VIEW)");
             System.out.println("================================================");
+            System.out.println("Digite um numero para escolher o comando: ");
 
             int escolha = scanner.nextInt();
             scanner.nextLine();
@@ -65,6 +68,11 @@ public class Principal {
                     break;
 
                 case 5:
+                    gerenciamentoAlerta(connection, scanner);
+                    break;
+                    
+                case 6:
+                    gerenciarViews(connection, scanner);
                     break;
             }
         }
@@ -898,5 +906,130 @@ public class Principal {
 /*============================================================================================================*/
     
 //                  GERENCIANDO INFORMAÇÕES DA CLASSE ALERTA
+    
+        public static void gerenciamentoAlerta(Connection connection, Scanner scanner) {
+        // Criação de um objeto 'alertaDao' para interagir com a tabela de alertas
+        AlertaDao alertaDao = new AlertaDao(connection);
+
+        // Variável que controla o loop do menu
+        boolean sair = false;
+
+        // Loop para exibição do menu e processamento das opções do usuário
+        while (!sair) {
+            // Exibição do menu de opções
+            System.out.println("\n------------------------------");
+            System.out.println("   Gerenciar Alertas   ");
+            System.out.println("------------------------------");
+            System.out.println("1 -> Excluir Alerta");
+            System.out.println("2 -> Listar Alerta");
+            System.out.println("0 -> IR PARA O MENU PRINCIPAL");
+            System.out.print("Digite o número para escolher: ");
+
+            // Captura da escolha do usuário
+            int escolha = scanner.nextInt();
+            scanner.nextLine(); // Consome a quebra de linha pendente
+
+            // Switch para determinar qual ação tomar
+            switch (escolha) {
+                case 0:
+                    // Saída para o menu principal
+                    sair = true;
+                    break;
+
+                case 1:
+                    // Opção para excluir alerta
+                    System.out.println("Excluir Alerta:");
+                    System.out.print("ID do Alerta: ");
+                    int idAlertaExcluir = scanner.nextInt();
+                    scanner.nextLine(); // Consome a quebra de linha
+
+                    // Verificação se o alerta existe no banco antes de tentar excluir
+                    Alerta alertaParaExcluir = alertaDao.busca(idAlertaExcluir);
+                    if (alertaParaExcluir == null) {
+                        System.out.println("Nenhum alerta encontrado com o ID informado.");
+                    } else {
+                        // Confirmação de exclusão
+                        System.out.print("Tem certeza que deseja excluir o alerta? (S/N): ");
+                        String confirmacaoExcluir = scanner.nextLine();
+                        if (confirmacaoExcluir.equalsIgnoreCase("S")) {
+                            alertaDao.delete(idAlertaExcluir);
+                            System.out.println("Alerta excluído com sucesso.");
+                        } else {
+                            System.out.println("Exclusão cancelada.");
+                        }
+                    }
+                    break;
+
+                case 2:
+                // Opção para listar alertas
+                System.out.println("Listar Alertas:");
+                List<Alerta> alertas = alertaDao.listAll();
+                if (alertas.isEmpty()) {
+                    System.out.println("Nenhum alerta encontrado.");
+                } else {
+                    // Exibição de cada alerta com seus detalhes
+                    System.out.println("\n==== Alertas ====");
+                    for (Alerta alerta : alertas) {
+                        System.out.println("ID Alerta: " + alerta.getId_alerta());
+                        System.out.println("ID Solo: " + alerta.getId_solo());
+                        System.out.println("ID Irrigação: " + alerta.getId_irrigacao());
+                        System.out.println("Nível Alerta: " + alerta.getNivel_alerta());
+                        System.out.println("Descrição: " + alerta.getDescricao());
+                        System.out.println("---------------------------");
+                    }
+                }
+                break;
+
+
+                default:
+                    // Caso o usuário forneça uma opção inválida
+                    System.out.println("Opção inválida. Tente novamente.");
+            }
+        }
+    }
+        
+/*============================================================================================================*/
+    
+//                  VISUALIZAÇÃO DE RELATORIOS (VIEWS)
+
+
+    public static void gerenciarViews(Connection connection, Scanner scanner) {
+        ViewDao viewDao = new ViewDao(connection);
+        boolean sair = false;
+
+        while (!sair) {
+            System.out.println("\n------------------------------");
+            System.out.println("  Visualizar Relatorios Views   ");
+            System.out.println("------------------------------");
+            System.out.println("1 -> Visualizar Relatório de Crescimento");
+            System.out.println("2 -> Visualizar Plantas e Solo");
+            System.out.println("0 -> Voltar ao Menu Principal");
+            System.out.print("Digite o número para escolher: ");
+
+            int escolha = scanner.nextInt();
+            scanner.nextLine(); // Consumir a quebra de linha
+
+            switch (escolha) {
+                case 0:
+                    sair = true;
+                    break;
+
+                case 1:
+                    System.out.println("\nRelatório de Crescimento:");
+                    viewDao.consultarViewRelatorio();
+                    break;
+
+                case 2:
+                    System.out.println("\nPlantas e Solo:");
+                    viewDao.consultarPlantasSolo();
+                    break;
+
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+            }
+        }
+    }
+
+
     
 }
