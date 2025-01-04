@@ -136,3 +136,22 @@
 	JOIN solo ON planta.id_solo = solo.id_solo;
     
 	SELECT * FROM view_plantas_solo;
+    
+/*exibe todos os relatórios de crescimento organizados por planta.*/
+
+    CREATE VIEW view_relatorios_crescimento AS
+SELECT 
+    planta.id_planta,
+    planta.nome AS nome_planta,
+    planta.tipo_planta,
+    relatorio_crescimento.data_medicao,
+    relatorio_crescimento.altura,
+    relatorio_crescimento.descricao_saude
+FROM 
+    relatorio_crescimento
+JOIN 
+    planta ON relatorio_crescimento.id_planta = planta.id_planta;
+
+-- Exibir os dados da view
+SELECT * FROM view_relatorios_crescimento;
+
