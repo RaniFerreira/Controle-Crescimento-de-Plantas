@@ -89,6 +89,28 @@ public class SoloDao {
         }
     }
     
+    public Solo busca(int id) {
+        String sql = "SELECT * FROM solo WHERE id_solo = ?";
+        
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                Solo solo = new Solo();
+                solo.setId_solo(rs.getInt("id_solo"));
+                solo.setTipo_solo(rs.getString("tipo_solo"));
+                solo.setFertilidade(rs.getString("fertilidade"));
+                solo.setUmidade(rs.getFloat("umidade"));
+                return solo;
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar solo: " + e.getMessage());
+        }
+        return null; // Retorna null se nenhum solo for encontrado
+}
+
+    
     // Metodo para listar 
     public List<Solo> listAll() {
     String sql = "SELECT * FROM solo";

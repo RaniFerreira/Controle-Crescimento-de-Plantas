@@ -93,6 +93,40 @@ public class RelatorioCrescimentoDao {
         }
     }
     
+    public RelatorioCrescimento busca(int id) {
+        // SQL para buscar o relatório de crescimento com base no ID
+        String sql = "SELECT * FROM relatorio_crescimento WHERE id_relatorio = ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, id); // Define o ID para a consulta
+
+            // Executa a consulta no banco de dados
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                // Se encontrar um resultado, cria um objeto RelatorioCrescimento
+                RelatorioCrescimento relatorio = new RelatorioCrescimento();
+
+                // Preenche o objeto com os dados do banco
+                relatorio.setId_relatorio(rs.getInt("id_relatorio"));
+                relatorio.setId_planta(rs.getInt("id_planta"));
+                relatorio.setData_medicao(rs.getDate("data_medicao"));
+                relatorio.setAltura(rs.getFloat("altura"));
+                relatorio.setDescricao_saude(rs.getString("descricao_saude"));
+
+                // Retorna o relatório encontrado
+                return relatorio;
+            }
+        } catch (SQLException e) {
+            // Em caso de erro, exibe a mensagem de erro
+            System.err.println("Erro ao buscar relatório de crescimento: " + e.getMessage());
+        }
+
+        // Retorna null se nenhum relatório for encontrado
+        return null;
+    }
+
+    
     // Metodo para listar 
     public List<RelatorioCrescimento> listAll() {
     String sql = "SELECT * FROM relatorio_crescimento";
