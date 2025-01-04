@@ -45,19 +45,9 @@
 
 	/*criacao da tabela alerta*/
 	CREATE TABLE alerta(
-		id_alerta INT PRIMARY KEY NOT NULL AUTO_INCREMENT,             /*chave primaria que será auto 
-																		incrementada e o campo não poderá ficar nulo*/
-		id_solo INT NOT NULL,                                          /*campo criado para referenciar a tabela solo*/
-        id_irrigacao INT NOT NULL,                                     /*campo criado para referenciar a tabela irrigacao*/
+		id_alerta INT PRIMARY KEY NOT NULL AUTO_INCREMENT,             /*chave primaria que será auto */
         nivel_alerta INT,
-		descricao VARCHAR(100),
-		FOREIGN KEY (id_solo) REFERENCES solo(id_solo)		           /*criacao da chave estrangeira*/
-		ON UPDATE CASCADE                                              /*comando para atualizar a chave estrangeira conforme a tabela principal*/
-		ON DELETE CASCADE,                                             /*comando para deletar a chave estrangeira conforme a tabela principal*/
-		FOREIGN KEY (id_irrigacao) REFERENCES irrigacao(id_irrigacao)  /*criacao da chave estrangeira*/
-		ON UPDATE CASCADE 
-		ON DELETE CASCADE
-
+		descricao VARCHAR(100)
 	);
 
 	/*criacao da tabela relatorio_crescomento*/
@@ -108,10 +98,10 @@
    
 	/*Inserindo valores na tabela ALERTA*/
     INSERT INTO alerta 
-    (id_solo, id_irrigacao, nivel_alerta, descricao) VALUES 
-	(1, 4, 2, 'Umidade baixa no solo arenoso'),
-	(2, 5, 1, 'Solo argiloso precisa de menor quantidade de água'),
-	(3, 6, 3, 'Necessita de irrigação frequente');
+    ( nivel_alerta, descricao) VALUES 
+	(1,  'Umidade baixa no solo arenoso'),
+	(2,  'Solo argiloso precisa de menor quantidade de água'),
+	(3,   'Necessita de irrigação frequente');
 
 	/*Inserindo valores na tabela RELATORIO DE CRESCIMENTO*/
 	INSERT INTO relatorio_crescimento 
@@ -154,4 +144,74 @@ JOIN
 
 -- Exibir os dados da view
 SELECT * FROM view_relatorios_crescimento;
+
+/********************************************************************************************************/
+
+/*dispara dados na tabela alerta_solo*/
+
+DROP TRIGGER IF EXISTS alerta_umidade_solo;
+
+DELIMITER $$
+
+CREATE TRIGGER alerta_umidade_solo
+AFTER INSERT ON solo
+FOR EACH ROW
+BEGIN
+    -- Verifica se a umidade do solo é menor que o esperado
+    IF NEW.umidade < 10 THEN
+        INSERT INTO alerta (nivel_alerta, descricao)
+        VALUES (1, CONCAT('Alerta: A umidade do solo ', NEW.id_solo, ' está abaixo do esperado.'));
+    
+    -- Verifica se a umidade do solo é maior que o esperado
+    ELSEIF NEW.umidade > 15 THEN
+        INSERT INTO alerta (nivel_alerta, descricao)
+        VALUES (3, CONCAT('Alerta: A umidade do solo ', NEW.id_solo, ' está acima do esperado.'));
+    END IF;
+END $$
+
+DELIMITER ;
+
+
+/*************************************************************************************************/
+/*trigger para disparar alerta de irrigação*/
+
+
+DELIMITER $$
+
+CREATE TRIGGER alerta_irriga_agua
+AFTER INSERT ON irrigacao
+FOR EACH ROW
+BEGIN
+    -- Verifica se a quantidade de água é menor que o esperado
+    IF NEW.quantidade_agua < 1.0 THEN
+        INSERT INTO alerta (nivel_alerta, descricao)
+        VALUES (1, CONCAT('Alerta: A quantidade de água para a planta ', NEW.id_planta, ' está abaixo do esperado.'));
+    
+    -- Verifica se a quantidade de água é maior que o esperado
+    ELSEIF NEW.quantidade_agua > 2.0 THEN
+        INSERT INTO alerta (nivel_alerta, descricao)
+        VALUES (3, CONCAT('Alerta: A quantidade de água para a planta ', NEW.id_planta, ' está acima do esperado.'));
+    END IF;
+END $$
+
+DELIMITER ;
+
+/*testes das triggers*/
+INSERT INTO irrigacao (id_planta, data_irrigacao, quantidade_agua)
+VALUES (2, '2024-04-01', 0.5);  -- Quantidade de água abaixo de 1.0
+
+INSERT INTO solo (tipo_solo, fertilidade, umidade)
+VALUES ('Arenoso', 'Baixa', 8.5); -- Umidade abaixo de 10
+
+
+select * from alerta;
+
+
+
+
+
+
+
+
+
 
