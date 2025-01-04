@@ -24,7 +24,7 @@ public class AlertaDao {
     }
     // Método para deletar um registro pelo ID
     public void delete(int id_alerta) {
-        String sql = "DELETE FROM alerta WHERE id_aleta = ?";
+        String sql = "DELETE FROM alerta WHERE id_alerta = ?";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             // Define o valor para o parâmetro ID
@@ -54,8 +54,6 @@ public class AlertaDao {
                 if (rs.next()) {
                     alerta = new Alerta();
                     alerta.setId_alerta(rs.getInt("id_alerta"));
-                    alerta.setId_solo(rs.getInt("id_solo"));
-                    alerta.setId_irrigacao(rs.getInt("id_irrigacao"));
                     alerta.setNivel_alerta(rs.getInt("nivel_alerta"));
                     alerta.setDescricao(rs.getString("descricao"));
                 } else {
@@ -87,8 +85,6 @@ public class AlertaDao {
         while (rs.next()) {
             Alerta alerta = new Alerta();
             alerta.setId_alerta(rs.getInt("id_alerta")); 
-            alerta.setId_solo(rs.getInt("id_solo"));
-            alerta.setId_irrigacao(rs.getInt("id_irrigacao"));
             alerta.setNivel_alerta(rs.getInt("nivel_alerta"));
             alerta.setDescricao(rs.getString("descricao"));
             
