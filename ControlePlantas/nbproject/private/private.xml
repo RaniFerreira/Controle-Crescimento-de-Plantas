@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/ranie/OneDrive/Área%20de%20Trabalho/Controle%20Plantas/ControlePlantas/src/model/Principal.java</file>
             <file>file:/C:/Users/ranie/OneDrive/Área%20de%20Trabalho/Controle%20Plantas/ControlePlantas/src/model/Alerta.java</file>
             <file>file:/C:/Users/ranie/OneDrive/Área%20de%20Trabalho/Controle%20Plantas/ControlePlantas/src/dao/SoloDao.java</file>
@@ -10,6 +11,13 @@
             <file>file:/C:/Users/ranie/OneDrive/Área%20de%20Trabalho/Controle%20Plantas/ControlePlantas/src/dao/IrrigacaoDao.java</file>
             <file>file:/C:/Users/ranie/OneDrive/Área%20de%20Trabalho/Controle%20Plantas/ControlePlantas/src/dao/RelatorioCrescimentoDao.java</file>
             <file>file:/C:/Users/ranie/OneDrive/Área%20de%20Trabalho/Controle%20Plantas/ControlePlantas/src/dao/AlertaDao.java</file>
+=======
+            <file>file:/C:/Users/rodri/OneDrive/Documentos/controle_de_crescimento/Controle-Crescimento-de-Plantas/ControlePlantas/src/dao/ViewDao.java</file>
+            <file>file:/C:/Users/rodri/OneDrive/Documentos/controle_de_crescimento/Controle-Crescimento-de-Plantas/ControlePlantas/src/model/Alerta.java</file>
+            <file>file:/C:/Users/rodri/OneDrive/Documentos/controle_de_crescimento/Controle-Crescimento-de-Plantas/ControlePlantas/src/model/Principal.java</file>
+            <file>file:/C:/Users/rodri/OneDrive/Documentos/controle_de_crescimento/Controle-Crescimento-de-Plantas/ControlePlantas/src/dao/IrrigacaoDao.java</file>
+            <file>file:/C:/Users/rodri/OneDrive/Documentos/controle_de_crescimento/Controle-Crescimento-de-Plantas/ControlePlantas/src/dao/AlertaDao.java</file>
+>>>>>>> c4b1a93c0139f29afd578a7b1fe3dafc9d1f4a07
         </group>
     </open-files>
 </project-private>

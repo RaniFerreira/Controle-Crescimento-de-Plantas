@@ -44,6 +44,32 @@ public class AlertaDao {
         }
     }
     
+    public Alerta busca(int idAlerta) {
+        String sql = "SELECT * FROM alerta WHERE id_alerta = ?";
+        Alerta alerta = null;
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, idAlerta);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    alerta = new Alerta();
+                    alerta.setId_alerta(rs.getInt("id_alerta"));
+                    alerta.setId_solo(rs.getInt("id_solo"));
+                    alerta.setId_irrigacao(rs.getInt("id_irrigacao"));
+                    alerta.setNivel_alerta(rs.getInt("nivel_alerta"));
+                    alerta.setDescricao(rs.getString("descricao"));
+                } else {
+                    System.out.println("Nenhum alerta encontrado com o ID informado.");
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar alerta: " + e.getMessage());
+        }
+
+        return alerta;
+    }
+
+    
     // Metodo para listar 
     public List<Alerta> listAll() {
     String sql = "SELECT * FROM alerta";
