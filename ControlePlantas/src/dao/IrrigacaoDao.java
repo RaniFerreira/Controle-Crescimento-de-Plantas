@@ -88,6 +88,39 @@ public class IrrigacaoDao {
             System.err.println("Erro ao atualizar irrigacao: " + e.getMessage());
         }
     }
+    
+    public Irrigacao busca(int id) {
+        // SQL para buscar a irrigação com base no ID
+        String sql = "SELECT * FROM irrigacao WHERE id_irrigacao = ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, id); // Define o ID para a consulta
+
+            // Executa a consulta no banco de dados
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                // Se encontrar um resultado, cria um objeto Irrigacao
+                Irrigacao irrigacao = new Irrigacao();
+
+                // Preenche o objeto com os dados do banco
+                irrigacao.setId_irrigacao(rs.getInt("id_irrigacao"));
+                irrigacao.setId_planta(rs.getInt("id_planta"));
+                irrigacao.setData_irrigacao(rs.getDate("data_irrigacao"));
+                irrigacao.setQuantidade_agua(rs.getFloat("quantidade_agua"));
+
+                // Retorna a irrigação encontrada
+                return irrigacao;
+            }
+        } catch (SQLException e) {
+            // Em caso de erro, exibe a mensagem de erro
+            System.err.println("Erro ao buscar irrigação: " + e.getMessage());
+        }
+
+        // Retorna null se nenhuma irrigação for encontrada
+        return null;
+    }
+
 
     // Método para listar todos os registros na tabela irrigacao
     public List<Irrigacao> listAll() {

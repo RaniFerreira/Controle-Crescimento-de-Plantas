@@ -91,6 +91,27 @@ public class PlantaDao {
             System.err.println("Erro ao atualizar planta: " + e.getMessage());
         }
     }
+    public Planta busca(int id) {
+        String sql = "SELECT * FROM planta WHERE id_planta = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                Planta planta = new Planta();
+                planta.setId_planta(rs.getInt("id_planta"));
+                planta.setId_solo(rs.getInt("id_solo"));
+                planta.setNome(rs.getString("nome"));
+                planta.setTipo_planta(rs.getString("tipo_planta"));
+                planta.setData_plantio(rs.getDate("data_plantio"));
+                return planta;
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar planta: " + e.getMessage());
+        }
+        return null; // Retorna null se nenhuma planta for encontrada
+    }
+
 
     // Método para listar todos os registros na tabela Planta
     public List<Planta> listAll() {
