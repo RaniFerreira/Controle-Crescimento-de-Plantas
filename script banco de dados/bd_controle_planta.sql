@@ -171,6 +171,26 @@ END $$
 
 DELIMITER ;
 
+DELIMITER $$
+
+CREATE TRIGGER alerta_solo_update
+AFTER UPDATE ON solo
+FOR EACH ROW
+BEGIN
+    -- Verifica se a umidade do solo é menor que o esperado
+    IF NEW.umidade < 10 THEN
+        INSERT INTO alerta (nivel_alerta, descricao)
+        VALUES (1, CONCAT('Alerta: A umidade do solo ', NEW.id_solo, ' está abaixo do esperado.'));
+    
+    -- Verifica se a umidade do solo é maior que o esperado
+    ELSEIF NEW.umidade > 15 THEN
+        INSERT INTO alerta (nivel_alerta, descricao)
+        VALUES (3, CONCAT('Alerta: A umidade do solo ', NEW.id_solo, ' está acima do esperado.'));
+    END IF;
+END $$
+
+DELIMITER ;
+
 
 /*************************************************************************************************/
 /*trigger para disparar alerta de irrigação*/
@@ -194,19 +214,38 @@ BEGIN
     END IF;
 END $$
 
+/*apos update*/
+DELIMITER $$
+
+CREATE TRIGGER alerta_irriga_update
+AFTER UPDATE ON irrigacao
+FOR EACH ROW
+BEGIN
+    -- Verifica se a quantidade de água é menor que o esperado
+    IF NEW.quantidade_agua < 1.0 THEN
+        INSERT INTO alerta (nivel_alerta, descricao)
+        VALUES (1, CONCAT('Alerta: A quantidade de água para a planta ', NEW.id_planta, ' está abaixo do esperado.'));
+    
+    -- Verifica se a quantidade de água é maior que o esperado
+    ELSEIF NEW.quantidade_agua > 2.0 THEN
+        INSERT INTO alerta (nivel_alerta, descricao)
+        VALUES (3, CONCAT('Alerta: A quantidade de água para a planta ', NEW.id_planta, ' está acima do esperado.'));
+    END IF;
+END $$
+
 DELIMITER ;
 
-/*testes das triggers*/
+/* testes
 INSERT INTO irrigacao (id_planta, data_irrigacao, quantidade_agua)
 VALUES (2, '2024-04-01', 0.5);  -- Quantidade de água abaixo de 1.0
 
 INSERT INTO solo (tipo_solo, fertilidade, umidade)
 VALUES ('Arenoso', 'Baixa', 8.5); -- Umidade abaixo de 10
 
+UPDATE solo set umidade = 23 where id_solo = 1;
 
 select * from alerta;
-
-
+*/
 
 
 
