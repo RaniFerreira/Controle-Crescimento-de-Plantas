@@ -971,8 +971,6 @@ public class Principal {
                     System.out.println("\n==== Alertas ====");
                     for (Alerta alerta : alertas) {
                         System.out.println("ID Alerta: " + alerta.getId_alerta());
-                        System.out.println("ID Solo: " + alerta.getId_solo());
-                        System.out.println("ID Irrigação: " + alerta.getId_irrigacao());
                         System.out.println("Nível Alerta: " + alerta.getNivel_alerta());
                         System.out.println("Descrição: " + alerta.getDescricao());
                         System.out.println("---------------------------");

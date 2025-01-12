@@ -10,8 +10,6 @@ public class Alerta {
     //declaração das variavéis encapsuladas
     
     private int id_alerta;      // chave primaria do tipo inteiro, será auto incrementada 
-    private int id_solo;        // variavel para a chave estrangeira  
-    private int id_irrigacao;   // variavel para a chave estrangeira
     private int nivel_alerta;   // nivel de alerta do tipo inteiro   
     private String descricao;   // descricao do alerta do tipo String  
     
@@ -22,12 +20,10 @@ public class Alerta {
     }
 
     // Construtor com parâmetros para inicializar as variáveis diretamente
-    public Alerta(int nivel_alerta, String descricao, int id_solo, int id_irrigacao) {
+    public Alerta(int nivel_alerta, String descricao) {
        
         this.nivel_alerta = nivel_alerta;
         this.descricao = descricao;
-        this.id_solo = id_solo;
-        this.id_irrigacao = id_irrigacao;
     }
 
     // Getters e Setters
@@ -55,21 +51,7 @@ public class Alerta {
         this.descricao = descricao;
     }
 
-    public int getId_solo() {
-        return id_solo;
-    }
 
-    public void setId_solo(int id_solo) {
-        this.id_solo = id_solo;
-    }
-
-    public int getId_irrigacao() {
-        return id_irrigacao;
-    }
-
-    public void setId_irrigacao(int id_irrigacao) {
-        this.id_irrigacao = id_irrigacao;
-    }
 
     
     
