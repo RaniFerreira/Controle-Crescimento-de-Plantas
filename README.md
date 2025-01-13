@@ -5,10 +5,9 @@ Bem-vindo ao projeto de Controle de Crescimento e Irrigação de Plantas! Este s
 ## 📂 Organização do Repositório
   ```plaintext
   .
-  ├── vou descrever aqui         # ====
-  ├── =======                    # ====
-  ├── =======                    # ====
-  └── =======                    # ====
+  ├── ControlePlantas        ->  Projeto
+  ├── script banco de dados  ->  Script DDL
+  └── README                 ->  Descriçaõ do projeto
   ```
 
 ## 📋 Descrição
