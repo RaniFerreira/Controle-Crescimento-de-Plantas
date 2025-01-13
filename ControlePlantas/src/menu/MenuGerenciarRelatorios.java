@@ -99,7 +99,7 @@ public class MenuGerenciarRelatorios {
                     try {
                         // Tenta inserir o novo relatório no banco de dados
                         relatorioDao.insert(novoRelatorio);
-                        System.out.println("Relatório de Crescimento inserido com sucesso!");
+                        
                     } catch (Exception e) {
                         // Caso ocorra algum erro durante a inserção, exibe mensagem de erro
                         System.out.println("Erro ao inserir relatório de crescimento: " + e.getMessage());
@@ -162,7 +162,7 @@ public class MenuGerenciarRelatorios {
 
                     // Tenta atualizar o relatório no banco de dados
                     relatorioDao.update(relatorioExistente);
-                    System.out.println("Relatório de Crescimento atualizado com sucesso!");
+                    
                     break;
 
                 // Caso para excluir um relatório de crescimento
@@ -186,7 +186,7 @@ public class MenuGerenciarRelatorios {
                     if (confirmacaoDelete.equalsIgnoreCase("S")) {
                         // Caso confirmado, realiza a exclusão
                         relatorioDao.delete(idRelatorioDelete);
-                        System.out.println("Relatório de Crescimento excluído com sucesso.");
+                        
                     } else {
                         // Caso o usuário cancele, exibe mensagem
                         System.out.println("Exclusão cancelada.");

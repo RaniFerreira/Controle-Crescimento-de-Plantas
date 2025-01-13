@@ -63,7 +63,7 @@ public class MenuGerenciarSolos {
 
                     try {
                         soloDao.insert(novoSolo);
-                        System.out.println("Solo inserido com sucesso!");
+                        
                     } catch (Exception e) {
                         System.out.println("Erro ao inserir solo: " + e.getMessage());
                     }
@@ -131,7 +131,7 @@ public class MenuGerenciarSolos {
                     String confirmacao = scanner.nextLine();
                     if (confirmacao.equalsIgnoreCase("S")) {
                         soloDao.delete(idDelete);
-                        System.out.println("Solo excluído com sucesso.");
+                        
                     } else {
                         System.out.println("Exclusão cancelada.");
                     }

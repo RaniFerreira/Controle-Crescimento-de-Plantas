@@ -65,7 +65,7 @@ public class MenuGerenciamentoAlerta {
                         String confirmacaoExcluir = scanner.nextLine();
                         if (confirmacaoExcluir.equalsIgnoreCase("S")) {
                             alertaDao.delete(idAlertaExcluir);
-                            System.out.println("Alerta excluído com sucesso.");
+                            
                         } else {
                             System.out.println("Exclusão cancelada.");
                         }

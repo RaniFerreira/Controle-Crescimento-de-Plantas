@@ -94,7 +94,7 @@ public class MenuGerenciarIrrigacao {
                     try {
                         // Tenta inserir a nova irrigação no banco de dados
                         irrigacaoDao.insert(novaIrrigacao);
-                        System.out.println("Irrigação inserida com sucesso!");
+                        
                     } catch (Exception e) {
                         // Caso ocorra algum erro durante a inserção, exibe mensagem de erro
                         System.out.println("Erro ao inserir irrigação: " + e.getMessage());
@@ -153,7 +153,7 @@ public class MenuGerenciarIrrigacao {
                     try {
                         // Tenta atualizar a irrigação no banco de dados
                         irrigacaoDao.update(irrigacaoExistente);
-                        System.out.println("Irrigação atualizada com sucesso!");
+                        
                     } catch (Exception e) {
                         // Caso ocorra algum erro durante a atualização, exibe mensagem de erro
                         System.out.println("Erro ao atualizar irrigação: " + e.getMessage());
@@ -181,7 +181,7 @@ public class MenuGerenciarIrrigacao {
                     if (confirmacaoDelete.equalsIgnoreCase("S")) {
                         // Caso confirmado, realiza a exclusão
                         irrigacaoDao.delete(idIrrigacaoDelete);
-                        System.out.println("Irrigação excluída com sucesso.");
+                        
                     } else {
                         // Caso o usuário cancele, exibe mensagem
                         System.out.println("Exclusão cancelada.");

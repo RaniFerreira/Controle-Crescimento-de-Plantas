@@ -103,7 +103,7 @@ public class MenuGerenciarPlantas {
                     try {
                         PlantaDao plantaeDao = new PlantaDao(connection);
                         plantaeDao.insert(novaPlanta);
-                        System.out.println("Planta inserida com sucesso!");
+                       
                     } catch (Exception e) {
                         System.out.println("Erro ao inserir planta: " + e.getMessage());
                     }
@@ -186,7 +186,7 @@ public class MenuGerenciarPlantas {
                         String confirmacao = scanner.nextLine();
                         if (confirmacao.equalsIgnoreCase("S")) {
                             plantaDao.delete(idDelete); 
-                            System.out.println("Planta excluída com sucesso.");
+                            
                         } else {
                             System.out.println("Exclusão cancelada.");
                         }
