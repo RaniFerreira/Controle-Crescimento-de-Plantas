@@ -60,10 +60,10 @@ public class Solo {
         this.umidade = umidade;
     }
 
-    
-    
-    
-    
-    
+    @Override
+    public String toString() {
+        return "Solo{" + "id_solo=" + id_solo + ", tipo_solo=" + tipo_solo + ", fertilidade=" + fertilidade + ", umidade=" + umidade + '}';
+    }
+
     
 }

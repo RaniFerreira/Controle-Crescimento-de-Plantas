@@ -80,6 +80,11 @@ public class Planta {
     public void setTipo_planta(String tipo_planta) {
         this.tipo_planta = tipo_planta;
     }
+
+    @Override
+    public String toString() {
+        return "Planta{" + "id_planta=" + id_planta + ", id_solo=" + id_solo + ", nome=" + nome + ", tipo_planta=" + tipo_planta + ", data_plantio=" + data_plantio + '}';
+    }
     
     
     

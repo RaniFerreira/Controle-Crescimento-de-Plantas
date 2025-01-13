@@ -51,8 +51,9 @@ public class Alerta {
         this.descricao = descricao;
     }
 
-
-
-    
+    @Override
+    public String toString() {
+        return "Alerta{" + "id_alerta=" + id_alerta + ", nivel_alerta=" + nivel_alerta + ", descricao=" + descricao + '}';
+    }
     
 }

@@ -61,5 +61,10 @@ public class Irrigacao {
         this.quantidade_agua = quantidade_agua;
     }
 
+    @Override
+    public String toString() {
+        return "Irrigacao{" + "id_irrigacao=" + id_irrigacao + ", id_planta=" + id_planta + ", data_irrigacao=" + data_irrigacao + ", quantidade_agua=" + quantidade_agua + '}';
+    }
+
     
 }
